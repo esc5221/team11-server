@@ -78,7 +78,7 @@ class MessageRoomViewSet(viewsets.GenericViewSet):
 
         # set unread to 0
         message_room = serializer.instance
-        user_unread = message_room.str_unread_count(request.user)
+        user_unread = message_room.str_user_unread(request.user)
         setattr(message_room, user_unread, 0)
         message_room.save()
         return Response(status=status.HTTP_200_OK, data=serializer.data)

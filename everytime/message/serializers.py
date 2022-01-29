@@ -100,7 +100,7 @@ class MessageRoomListSerializer(serializers.ModelSerializer):
         return "익명" if obj.is_anonymous else obj.other_user(self.context['request'].user).nickname
     
     def get_unread_count(self, obj):
-        return obj.unread_count(self.context['request'].user)
+        return obj.user_unread(self.context['request'].user)
     
     def get_last_message(self, obj):
         queryset = Message.objects.filter(message_room=obj).last()
@@ -128,7 +128,7 @@ class MessageRoomListSerializer(MessageRoomSerializer):
         fields = ('id', 'user_nickname', 'unread_count', 'last_message',)
 
     def get_unread_count(self, obj):
-        return obj.unread_count(self.context['request'].user)
+        return obj.user_unread(self.context['request'].user)
     
     def get_last_message(self, obj):
         queryset = Message.objects.filter(message_room=obj).last()

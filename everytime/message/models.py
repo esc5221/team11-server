@@ -56,7 +56,7 @@ class MessageRoom(models.Model):
         else:
             return
 
-    def unread_count(self, user):
+    def user_unread(self, user):
         if self.user1 == user:
             return self.user1_unread
         elif self.user2 == user:
@@ -64,7 +64,7 @@ class MessageRoom(models.Model):
         else:
             return
 
-    def str_unread_count(self, user):
+    def str_user_unread(self, user):
         if self.user1 == user:
             return "user1_unread"
         elif self.user2 == user:
